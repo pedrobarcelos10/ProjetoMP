@@ -17,7 +17,7 @@ const Dashboard = () => {
           </div>
           <div className="nav-right">
             <button onClick={() => navigate('/doacao')}>Faça sua Doação</button>
-            <button>Acompanhe sua Doação</button>
+            <button onClick={() => navigate('/acompanhardoacao')}>Acompanhe sua Doação</button>
           </div>
         </nav>
         

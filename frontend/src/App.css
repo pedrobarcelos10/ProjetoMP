@@ -210,3 +210,62 @@ button[type="submit"]:hover {
   font-size: 0.9rem;
   margin-top: 5px;
 }
+
+/* Página de Acompanhamento de Doação */
+.acompanhardoacao-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #F8FBD6;
+}
+
+.acompanhardoacao-container {
+  background-color: #F8FBD6;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+}
+
+.acompanhardoacao-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.acompanhardoacao-form-left {
+  flex: 1;
+}
+
+.acompanhardoacao-form-group {
+  margin-bottom: 15px;
+}
+
+.acompanhardoacao-form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.acompanhardoacao-form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.acompanhardoacao-form-right {
+  margin-left: 20px;
+}
+
+.acompanhardoacao-submit-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.acompanhardoacao-submit-button:hover {
+  background-color: #0056b3;
+}

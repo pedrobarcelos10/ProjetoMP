@@ -1,3 +1,4 @@
 Data | Horas Trabalhadas | Tipo Tarefa | Descrição da Tarefa Realizada
 07/09/2024 | 2:00:00 | Geral | Elaborou o esquematico das paginas no figma
 10/09/2024 | 2:00:00 | Frontend | Frontend da página de cadastro
+10/09/2024 | 1:00:00 | Frontend | Frontend da página de acompanhar Doação
