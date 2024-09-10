@@ -1,38 +1,126 @@
-.App {
+.logo {
+  width: 80px;
+  height: 80px;
+}
+
+
+
+
+/* Estilos da barra de navegação */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Coloca espaço entre os itens */
+  align-items: center; /* Alinha verticalmente */
+  padding: 20px;
+  background-color: #ae8b45; /* Cor de fundo da navbar */
+}
+
+/* Estilos para a seção da logo à esquerda */
+.nav-left .logo {
+  height: 50px; /* Ajuste o tamanho da logo */
+}
+
+/* Estilos para a seção dos botões à direita */
+.nav-right {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+/* Estilo básico para os botões */
+button {
+  background-color: #ff0000;
+  border: none;
+  color: white;
+  padding: 10px 20px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button:hover {
+  background-color: #45a049;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*Nome da Empresa*/
+
+.nomedaempresa {
+  font-size: 3rem; 
+  font-weight: bold;
+  color: #000000; 
+  font-family: cursive;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content-container {
+  display: flex;
+  justify-content: space-between; /* Alinha texto e imagem em lados opostos */
+  align-items: center;
+  padding: 50px;
+  height: 80vh; /* Ajusta a altura para ocupar uma boa parte da tela */
+  background-color:#F8FBD6;
+}
+
+.text-container {
+  flex: 1; /* O texto ocupa 50% do espaço */
+  padding-right: 20px;
+}
+
+.text-container h1 {
+  font-size: 2.7rem;
+  margin-bottom: 20px;
+}
+
+.text-container p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.image-container {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  width: 300px;
+}
+
+.imagemrio {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px
+}
+
+/*Estilizando o Footer*/
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.footer-links {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer-links a {
+  color: #f8f9fa;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
