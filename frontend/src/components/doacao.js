@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../App.css';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 const Doacao = () => {
   const [item, setItem] = useState('');
@@ -9,15 +9,12 @@ const Doacao = () => {
   const [dimensoes, setDimensoes] = useState('');
   const [enderecoDestino, setEnderecoDestino] = useState('');
   const [mensagem, setMensagem] = useState('');
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token'); // Pegar o token JWT do localStorage
-
-    if (!token) {
-      setMensagem('Você precisa estar logado para fazer uma doação.');
-      return;
-    }
+    const token = localStorage.getItem('token');
 
     const dados = {
       nome_item: item,
@@ -28,14 +25,17 @@ const Doacao = () => {
     };
 
     try {
-      await axios.post('http://localhost:8000/doacoes/doacao/', dados, {
+      const response = await axios.post('http://localhost:8000/doacoes/doacao/', dados, {
         headers: {
-          Authorization: `Bearer ${token}`, // Enviar o token JWT no cabeçalho da requisição
+          Authorization: `Bearer ${token}`,
         },
       });
+
+      setQrCodeUrl(response.data.qr_code);
+      setModalIsOpen(true);
       setMensagem('Doação realizada com sucesso!');
     } catch (error) {
-      setMensagem('Erro ao realizar a doação. Verifique se está logado.');
+      setMensagem('Erro ao realizar a doação. Verifique os dados.');
       console.error(error);
     }
   };
@@ -98,6 +98,13 @@ const Doacao = () => {
           {mensagem && <p>{mensagem}</p>}
           <button type="submit">Doar</button>
         </form>
+
+        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <h2>QR Code gerado com sucesso!</h2>
+          {qrCodeUrl && <img src={qrCodeUrl} alt="QR code" />}
+          <button onClick={() => setModalIsOpen(false)}>Fechar</button>
+        </Modal>
+
       </div>
     </div>
   );

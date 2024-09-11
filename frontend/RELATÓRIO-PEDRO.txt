@@ -1,3 +1,4 @@
 Data | Horas Trabalhadas | Tipo Tarefa | Descrição da Tarefa Realizada
 07/09/2024 | 2:00:00 | Geral | Elaborou o esquematico das paginas no figma
 10/09/2024 | 2:00:00 | Geral | Refatorou o programa
+10/09/2024 | 6:04:00 | Geral | Conexão do backend com o frontend + Criação de views
