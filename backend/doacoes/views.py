@@ -40,7 +40,7 @@ def cadastrar_doacao(request):
             endereco_destino=endereco_destino
         )
 
-        qr_code_url = f'http://localhost:8000/{settings.MEDIA_URL}{doacao.qr_code}'
+        qr_code_url = f'http://localhost:8000{settings.MEDIA_URL}{doacao.qr_code}'
         print(qr_code_url)
 
         return Response({
@@ -62,7 +62,7 @@ def listar_doacoes(request):
 def status_doacao(request, codigo):
     try:
         doacao = Doacao.objects.get(pk=codigo)
-        qr_code_url = f'http://localhost:8000/{settings.MEDIA_URL}{doacao.qr_code}'
+        qr_code_url = f'http://localhost:8000{settings.MEDIA_URL}{doacao.qr_code}'
         return Response({
             'status': 'Em trânsito',
             'localizacao': doacao.endereco_destino,
