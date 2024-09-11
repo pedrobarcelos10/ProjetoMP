@@ -9,20 +9,19 @@ const Login = () => {
   const [erro, setErro] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8000/auth/login/', {
-        username: email,
-        password: senha,
-      });
-      // Armazenar o token de acesso no localStorage
-      localStorage.setItem('token', response.data.access); // Verifique se está usando "access" como a chave correta
-      navigate('/doacao');
-    } catch (error) {
-      setErro('Email ou senha inválidos!');
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post('http://localhost:8000/auth/login/', {
+      username: email,
+      password: senha,
+    });
+    localStorage.setItem('token', response.data.access);
+    navigate('/doacao');
+  } catch (error) {
+    setErro('Email ou senha inválidos!');
+  }
+};
 
   return (
     <div className="login-page">
