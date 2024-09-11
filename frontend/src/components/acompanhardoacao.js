@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
 import '../App.css';
+import axios from 'axios';
 
 const Acompanhardoacao = () => {
   const [codigo, setCodigo] = useState('');
+  const [statusDoacao, setStatusDoacao] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Lógica para enviar o código da doação
-    console.log('Código da Doação:', codigo);
+    const token = localStorage.getItem('token'); // Pegar o token JWT do localStorage
+
+    try {
+      const response = await axios.get(`http://localhost:8000/doacoes/status/${codigo}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setStatusDoacao(response.data.status); // Atualiza o status da doação
+    } catch (error) {
+      setStatusDoacao('Erro ao buscar status da doação.');
+    }
   };
 
   return (
     <div className="acompanhardoacao-page">
       <div className="acompanhardoacao-container">
-        <h1>Doação</h1>
+        <h1>Acompanhe sua Doação</h1>
         <form onSubmit={handleSubmit} className="acompanhardoacao-form">
           <div className="acompanhardoacao-form-left">
             <div className="acompanhardoacao-form-group">
@@ -31,6 +43,7 @@ const Acompanhardoacao = () => {
             <button type="submit" className="acompanhardoacao-submit-button">Enviar</button>
           </div>
         </form>
+        {statusDoacao && <p>Status da Doação: {statusDoacao}</p>}
       </div>
     </div>
   );

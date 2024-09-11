@@ -1,69 +1,71 @@
 import React, { useState } from 'react';
 import '../App.css';
-import avatar from '../assets/genericavatar.png';
-import imagemrio from '../assets/imagemrio.jpg';
+import { cadastrarUsuario } from '../services/api';  // Importe a função da API
 
 const Cadastro = () => {
-  const [login, setLogin] = useState('');
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [endereco, setEndereco] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmaSenha, setConfirmaSenha] = useState('');
   const [erroSenha, setErroSenha] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (senha !== confirmaSenha) {
       setErroSenha('As senhas não coincidem!');
       return;
     }
     setErroSenha('');
-    // Lógica para enviar os dados do formulário
-    console.log('Login:', login);
-    console.log('Senha:', senha);
+    
+    const dados = {
+      nome_completo: nome,
+      email: email,
+      telefone: telefone,
+      endereco: endereco,
+      senha: senha,
+    };
+
+    try {
+      await cadastrarUsuario(dados);
+      alert('Usuário cadastrado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário', error);
+    }
   };
 
   return (
     <div className="cadastro-page">
       <div className="cadastro-container">
-        <div className="cadastro-left">
-          <img src={avatar} alt="avatar generico" className="avatar" />
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="login">Seu melhor e-mail:</label>
-              <input
-                type="text"
-                id="login"
-                value={login}
-                onChange={(e) => setLogin(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="senha">Senha:</label>
-              <input
-                type="password"
-                id="senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmaSenha">Confirme a Senha:</label>
-              <input
-                type="password"
-                id="confirmaSenha"
-                value={confirmaSenha}
-                onChange={(e) => setConfirmaSenha(e.target.value)}
-                required
-              />
-              {erroSenha && <p className="erro-senha">{erroSenha}</p>}
-            </div>
-            <button type="submit">Cadastrar</button>
-          </form>
-        </div>
-        <div className="cadastro-right">
-          <img src={imagemrio} alt="Imagem do Rio" className="imagemrio" />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Nome Completo:</label>
+            <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>E-mail:</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Telefone:</label>
+            <input type="text" value={telefone} onChange={(e) => setTelefone(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Endereço:</label>
+            <textarea value={endereco} onChange={(e) => setEndereco(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Senha:</label>
+            <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Confirme a Senha:</label>
+            <input type="password" value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required />
+            {erroSenha && <p className="erro-senha">{erroSenha}</p>}
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
       </div>
     </div>
   );

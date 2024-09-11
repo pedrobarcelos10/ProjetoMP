@@ -6,6 +6,12 @@ import logoo from '../assets/logoo.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token'); // Pega o token JWT para verificar autenticação
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove o token JWT para fazer logout
+    navigate('/login'); // Redireciona para a página de login após o logout
+  };
 
   return (
     <>
@@ -18,6 +24,16 @@ const Dashboard = () => {
           <div className="nav-right">
             <button onClick={() => navigate('/doacao')}>Faça sua Doação</button>
             <button onClick={() => navigate('/acompanhardoacao')}>Acompanhe sua Doação</button>
+
+            {/* Verifica se o usuário está logado ou não */}
+            {!token ? (
+              <>
+                <button onClick={() => navigate('/login')}>Login</button>
+                <button onClick={() => navigate('/cadastro')}>Cadastro</button>
+              </>
+            ) : (
+              <button onClick={handleLogout}>Logout</button>
+            )}
           </div>
         </nav>
         
